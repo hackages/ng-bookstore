@@ -11,9 +11,15 @@ export class AppComponent {
   title = 'Bookstore by Hackages';
 
   // Use mock data
-  books: Book[] = [];
+  books: Book[] = mockBooks;
 
-  search(): void {
+  search(searchTerm: string): void {
+    searchTerm = searchTerm.toLowerCase();
     // Implement the search function
+    this.books = mockBooks.filter(
+      (movie) =>
+        movie.title.toLowerCase().includes(searchTerm) ||
+        movie.category.toLowerCase().includes(searchTerm)
+    );
   }
 }
